@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { MiniKitProvider } from "@coinbase/onchainkit/minikit";
-import { base } from "wagmi/chains";
+import { MiniKitContextProvider } from "@/components/providers/MiniKitProvider";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -29,12 +28,7 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <MiniKitProvider
-                    apiKey={process.env.NEXT_PUBLIC_CDP_CLIENT_API_KEY}
-                    chain={base}
-                >
-                    {children}
-                </MiniKitProvider>
+                <MiniKitContextProvider>{children}</MiniKitContextProvider>
             </body>
         </html>
     );
