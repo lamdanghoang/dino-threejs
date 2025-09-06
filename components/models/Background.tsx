@@ -192,6 +192,9 @@ export const MovingBackgroundCubes: React.FC<MovingBackgroundCubesProps> = ({
                     newGroup.add(mesh);
                 }
 
+                // 🔀 random spacing mới
+                const spacing = 5 + Math.random() * 20;
+
                 // thay thế mesh cũ bằng mesh mới
                 if (cubesRef.current) {
                     cubesRef.current.remove(cube.mesh);
@@ -199,7 +202,8 @@ export const MovingBackgroundCubes: React.FC<MovingBackgroundCubesProps> = ({
                 }
 
                 cube.mesh = newGroup;
-                cube.mesh.position.set(maxX + 8, 0, 0);
+                cube.mesh.position.set(maxX + spacing, 0, 0); // ✅ dùng spacing mới
+                cube.initialPosition.set(maxX + spacing, 0, 0); // ✅ nhớ update lại initialPosition
                 cube.isColliding = false;
                 passedCubesRef.current.delete(index);
             }
