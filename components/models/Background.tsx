@@ -103,13 +103,12 @@ export const MovingBackgroundCubes: React.FC<MovingBackgroundCubesProps> = ({
         collisionCubes.current = [];
         passedCubesRef.current.clear();
 
-        const numCubes = 8;
+        const numCubes = 15;
         const startDistance = 50;
 
         for (let i = 0; i < numCubes; i++) {
             const cactusCount = Math.random() < 0.5 ? 1 : 2;
             const group = new THREE.Group();
-            const spacing = 5 + Math.random() * 20;
 
             for (let j = 0; j < cactusCount; j++) {
                 const index = Math.floor(Math.random() * cactusModels.length);
@@ -130,6 +129,9 @@ export const MovingBackgroundCubes: React.FC<MovingBackgroundCubesProps> = ({
                 mesh.position.x = j * 0.6;
                 group.add(mesh);
             }
+
+            // 🔀 random spacing hợp lý hơn
+            const spacing = 12 + Math.random() * 8;
 
             const x = startDistance + i * spacing;
             group.position.set(x, 0, 0);
@@ -178,6 +180,7 @@ export const MovingBackgroundCubes: React.FC<MovingBackgroundCubesProps> = ({
                     const idx = Math.floor(Math.random() * cactusModels.length);
                     const { scene } = cactusModels[idx];
                     const mesh = scene.clone(true);
+
                     mesh.traverse((child) => {
                         if ((child as Mesh).isMesh) {
                             (child as Mesh).castShadow = true;
@@ -188,18 +191,19 @@ export const MovingBackgroundCubes: React.FC<MovingBackgroundCubesProps> = ({
                                 });
                         }
                     });
+
                     mesh.position.x = j * 0.6;
                     newGroup.add(mesh);
                 }
-
-                // 🔀 random spacing mới
-                const spacing = 5 + Math.random() * 20;
 
                 // thay thế mesh cũ bằng mesh mới
                 if (cubesRef.current) {
                     cubesRef.current.remove(cube.mesh);
                     cubesRef.current.add(newGroup);
                 }
+
+                // 🔀 random spacing mới
+                const spacing = 5 + Math.random() * 20;
 
                 cube.mesh = newGroup;
                 cube.mesh.position.set(maxX + spacing, 0, 0); // ✅ dùng spacing mới
