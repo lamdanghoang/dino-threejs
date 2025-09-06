@@ -9,12 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@coinbase/onchainkit": "^0.38.19",
     "@react-three/drei": "^10.7.4",
     "@react-three/fiber": "^9.3.0",
     "clsx": "^2.1.1",
     "next": "15.5.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "wagmi": "^2.16.9"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

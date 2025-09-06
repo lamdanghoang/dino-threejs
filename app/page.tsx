@@ -1,8 +1,15 @@
 "use client";
-
+import { useEffect } from "react";
+import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import JumpingCube3D from "@/components/models/Render";
 
 export default function Home() {
+    const { setFrameReady, isFrameReady } = useMiniKit();
+
+    useEffect(() => {
+        if (!isFrameReady) setFrameReady();
+    }, [isFrameReady, setFrameReady]);
+
     return (
         <main className="flex min-h-screen flex-col items-center justify-between relative">
             {/* <div className="w-full h-screen">
