@@ -104,12 +104,12 @@ export const MovingBackgroundCubes: React.FC<MovingBackgroundCubesProps> = ({
         passedCubesRef.current.clear();
 
         const numCubes = 8;
-        const spacing = 15;
         const startDistance = 50;
 
         for (let i = 0; i < numCubes; i++) {
             const cactusCount = Math.random() < 0.5 ? 1 : 2;
             const group = new THREE.Group();
+            const spacing = 5 + Math.random() * 20;
 
             for (let j = 0; j < cactusCount; j++) {
                 const index = Math.floor(Math.random() * cactusModels.length);
