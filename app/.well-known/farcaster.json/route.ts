@@ -21,7 +21,7 @@ export async function GET() {
             signature: process.env.FARCASTER_SIGNATURE,
         },
         baseBuilder: {
-            allowedAddresses: ["0x6a8A1F2D964F2ff5Fe514ccd2a088A0900448157"],
+            allowedAddresses: ["0x63776AE89Da21B51D74435142C9768d1A2ebe4F3"],
         },
         frame: withValidProperties({
             version: "1",
